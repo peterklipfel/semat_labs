@@ -70,4 +70,27 @@ raise "Failed" unless rps_tournament_winner(
   ]
 ) == ["Richard", "R"]
 
+def combine_anagrams(words)
+  anagram = {}
+  words.each do |word|
+    anagram[count_letters word] ||= []
+    anagram[count_letters word] << word
+  end
+  anagram.values
+end
 
+def count_letters(word)
+  occurrences = {}
+  word.scan(/[a-zA-Z]/).each{|l| occurrences[l].nil? ? occurrences[l] = 1 : occurrences[l] += 1}
+  occurrences
+end
+
+# Doesn't work because array ordering 
+raise "Failed" unless 
+  (combine_anagrams(['cars', 'for', 'potatoes', 'racs', 'four', 'scar', 'creams', 'scream']) -
+    [ ["cars", "racs", "scar"],
+      ["four"],
+      ["for"],
+      ["potatoes"],
+      ["creams", "scream"] ]
+  ) == []
