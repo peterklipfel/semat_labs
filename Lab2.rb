@@ -1,3 +1,7 @@
+##########################################################################
+# Part 1
+##########################################################################
+
 class HelloWorldClass
     def initialize(name)
        @name = name.capitalize
@@ -10,6 +14,10 @@ hello = HelloWorldClass.new("Peter")
 hello.sayHi
 
 
+
+##########################################################################
+# Part 2
+##########################################################################
 
 def palindrome?(word)
   word.gsub(/[^a-zA-Z]/, '').downcase.to_s == word.gsub(/[^a-zA-Z]/, '').downcase.to_s.reverse
@@ -32,6 +40,11 @@ raise "Failed" unless (count_words("A man, a plan, a canal -- Panama") == {'a' =
 raise "Failed" unless (count_words("Doo bee doo bee doo") == {'doo' => 3, 'bee' => 2})
 
 
+
+##########################################################################
+# Part 3
+##########################################################################
+
 class WrongNumberOfPlayersError <  StandardError ; end
 class NoSuchStrategyError <  StandardError ; end
 
@@ -51,10 +64,9 @@ def get_set_winner set
   set_winner = rps_game_winner [[first_winner, moves[first_winner]], [second_winner, moves[second_winner]] ]
 end
 
+# inspiration from http://stackoverflow.com/questions/14388700/ruby-rock-paper-scissors-tournament
 def rps_tournament_winner tournie
-  # inspiration from http://stackoverflow.com/questions/14388700/ruby-rock-paper-scissors-tournament
-  return rps_game_winner(tournie) if tournie[0][0].kind_of? String
-  return rps_game_winner([rps_tournament_winner(tournie[0]),rps_tournament_winner(tournie[1])])
+   if tournie[0][0].kind_of? String ? return rps_game_winner(tournie) : return rps_game_winner([rps_tournament_winner(tournie[0]),rps_tournament_winner(tournie[1])])
 end
 
 raise "Failed" unless rps_tournament_winner(
@@ -69,6 +81,12 @@ raise "Failed" unless rps_tournament_winner(
       ]
   ]
 ) == ["Richard", "R"]
+
+
+
+##########################################################################
+# Part 4
+##########################################################################
 
 def combine_anagrams(words)
   anagram = {}
